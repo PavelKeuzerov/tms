@@ -3,5 +3,6 @@
 # asasas
 it my first commit
 # добавить строк
-удалить строк
-add puts
+# удалить строк
+# add puts
+puts
