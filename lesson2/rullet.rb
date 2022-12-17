@@ -4,7 +4,6 @@
 # 1-ввод данный для игры
 # 2-объявление результата
 
-
 while true
   collors = %w[red black zero]
   puts 'Выберите цвет для ставки: red, black, zero'

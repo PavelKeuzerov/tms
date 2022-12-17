@@ -17,7 +17,6 @@ GREEN = 37
 MIN = 1
 MAX = 37
 
-
   collors = rand(MIN..MAX)
   user_attempt = 1
   loop do
