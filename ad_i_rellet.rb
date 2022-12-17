@@ -38,8 +38,6 @@ MAX = 37
       GREEN
       puts "Вы проиграли ввыпало #{collors='GREEN'}"
       user_attempt += 1 
-    # else
-    #   puts "Вы все проиграли #{MONEY - user_attempt +1 < 0}"
     end 
   end  
 
