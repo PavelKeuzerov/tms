@@ -10,35 +10,41 @@
 # 4-объявление результата
 
 
-MONEY = 100
-RED = (1..18).to_a
-BLACK = (19..36).to_a
+RED = 1..18
+BLACK = 19..36
 GREEN = 37
 MIN = 1
 MAX = 37
 
-  collors = rand(MIN..MAX)
-  user_attempt = 1
-  loop do
-    puts "У вас есть #{MONEY - user_attempt + 1} для ставки"
-    puts "Введите цифру от  #{MIN} до #{MAX} и вам выпадет цвет соответствующий ячеки с цифрой"
-    user_gues = gets.to_i
-    if
-      user_gues == collors
-      RED.include?(collors)
-      puts "Вы победили выпало #{collors = 'RED'}" 
-      user_attempt -= 2   
-  break
-    elsif 
-      BLACK.include?(collors)
-      puts "Вы проиграли выпало #{collors = 'BLACK'}"
-      user_attempt += 1
-    elsif
-      GREEN
-      puts "Вы проиграли ввыпало #{collors='GREEN'}"
-      user_attempt += 1 
-    end 
-  end  
+money = 100
 
+loop do
+  puts "У вас есть #{money} монет для ставки"
+  puts 'Сделайте ставку'
+  user_bet = gets.to_i
+  money -= user_bet
+  puts 'Введите  (red, black ,green)'
+  user_color = gets.strip
 
+  random_colors = rand(MIN..MAX)
+  if RED.include?(random_colors)
+    color = 'red'
+  elsif BLACK.include?(random_colors)
+    color = 'black'
+  else
+    color = 'green'
+  end
 
+  if color == 'green'
+    value_bet = user_bet * 36
+  else
+    value_bet = user_bet * 2
+  end
+
+  if user_color == color 
+    puts "Вы победили выпало #{color}"
+    money += value_bet
+  else
+    puts "Вы проиграли ввыпало #{color}"
+  end
+end
