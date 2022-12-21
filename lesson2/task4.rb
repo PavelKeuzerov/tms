@@ -5,26 +5,22 @@
 #2 сравнить стороны, решить какой треугольник
 #3 применить теорему пифагора
 
-puts 'Введите гипотенузу треугольник - a'
-a = gets.to_f
-puts 'Введите сторону катет треугольника - b'
-b = gets.to_f
-puts 'Введите сторону катет треугольника - c'
-c = gets.to_f
-if 
-  (b==a &&  a==c) 
-  puts 'треугольник равносторонний'
-elsif 
-  (a==b || b==c || c==a)
-  puts 'треугольник равнобедренный'
- elsif
-  (b<a && a>c) && (a**2 == c**2 + b**2)
-  puts 'треугольник прямоугольный'  
- elsif
-  (a<b && b>c) && (b**2 == a**2 + c**2)
-  puts 'треугольник прямоугольный'
- else
-  (a<c && c>b) && (c**2 == a**2 + b**2)
-  puts 'треугольник прямоугольный'
+
+sides_triangle = []
+puts 'Введите сторону треугольника'
+sides_triangle << gets.to_f
+puts 'Введите сторону треугольника'
+sides_triangle << gets.to_f
+puts 'Введите сторону треугольника'
+sides_triangle << gets.to_f
+leg_a, leg_b, hypotenuse = sides_triangle.sort
+if  hypotenuse**2 == leg_a**2 + leg_b**2
+  puts 'Треугольник прямоугольный'
+elsif leg_a == leg_b && leg_b == hypotenuse
+  puts 'Треугольник равнобедренный' 
+elsif leg_a == leg_b || leg_b == hypotenuse || hypotenuse == leg_a
+  puts 'Треугольник равносторонний'
+else
+  puts 'Треугольник разносторонний'
 end
 
