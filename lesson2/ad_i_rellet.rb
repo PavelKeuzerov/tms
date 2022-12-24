@@ -9,7 +9,6 @@
 # 3-ввод шанса на победу
 # 4-объявление результата
 
-
 RED = 1..18
 BLACK = 19..36
 GREEN = 37
@@ -39,6 +38,11 @@ loop do
     value_bet = user_bet * 36
   else
     value_bet = user_bet * 2
+  end
+
+  while money < user_bet
+    puts "Игра закончилась, ваш баланс #{money},монет"
+    user_bet = gets.to_i
   end
 
   if user_color == color 
