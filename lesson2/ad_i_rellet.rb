@@ -24,10 +24,10 @@ loop do
   puts 'Сделайте ставку'
   user_bet = gets.to_i
 
-  while money < user_bet
-    puts "Не достаточно средств, ваш баланс составляет #{money},монет"
+  while user_bet > money || user_bet <= 0 
+    puts "Не коректнаяставка, ваш баланс составляет #{money},монет"
     puts 'Сделайте вашу ставку'
-    user_bet = gets.to_i
+    user_bet = gets.to_i  
   end
 
   money -= user_bet
@@ -60,4 +60,5 @@ loop do
   else
     puts "Вы проиграли ввыпало #{color}"
   end
+  break if money <= 0
 end
