@@ -16,16 +16,25 @@ MIN = 1
 MAX = 37
 
 money = 100
+sektor_colors = %w[red black green]
 
 loop do
+
   puts "У вас есть #{money} монет для ставки"
   puts 'Сделайте ставку'
   user_bet = gets.to_i
+
+  while money < user_bet
+    puts "Не достаточно средств, ваш баланс составляет #{money},монет"
+    puts 'Сделайте вашу ставку'
+    user_bet = gets.to_i
+  end
+
   money -= user_bet
   puts 'Введите  (red, black ,green)'
   user_color = gets.strip
-
   random_colors = rand(MIN..MAX)
+
   if RED.include?(random_colors)
     color = 'red'
   elsif BLACK.include?(random_colors)
@@ -34,15 +43,15 @@ loop do
     color = 'green'
   end
 
+  until sektor_colors.include?(user_color)
+    puts 'Вы ввели не верный цвет, введите red, black, green'
+    user_color = gets.strip
+  end
+
   if color == 'green'
     value_bet = user_bet * 36
   else
     value_bet = user_bet * 2
-  end
-
-  while money < user_bet
-    puts "Игра закончилась, ваш баланс #{money},монет"
-    user_bet = gets.to_i
   end
 
   if user_color == color 
