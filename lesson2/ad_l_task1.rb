@@ -7,19 +7,23 @@
 # 1 ввод данных пользователем
 # 2 вычисление дискриминанта и корней уравнения
 
-puts 'Ведите коэфициент a'
-a = gets.to_f
+while true
+  puts 'Ведите коэфициент a'
+  a = gets.to_f
+  break if a != 0
+
+  puts 'Коэфициент не может быть равен 0'
+end
+
 puts 'Ведите коэфициент b'
 b = gets.to_f
 puts 'Ведите коэфициент c'
 c = gets.to_f
-discriminant = b**2 - 4 * a * c           
+discriminant = b**2 - 4 * a * c
 if discriminant < 0 
   puts "#{discriminant} Корней нет"
 elsif  discriminant == 0 
-  puts "#{discriminant} он имеет один корень #{-b / (a * 2)}"   
+  puts "#{discriminant} он имеет один корень #{-b / (a * 2)}"
 else discriminant > 0
   puts "#{discriminant} он имеет два корня #{(-b - Math.sqrt(discriminant)) / (a * 2)} и #{(-b + Math.sqrt(discriminant)) / (a * 2)}"   
 end
-
-

@@ -5,20 +5,24 @@
 #3 применить теорему пифагора
 
 sides_triangle = []
+
 puts 'Введите сторону треугольника'
 sides_triangle << gets.to_f
+
 puts 'Введите сторону треугольника'
 sides_triangle << gets.to_f
+
 puts 'Введите сторону треугольника'
 sides_triangle << gets.to_f
+
 leg_a, leg_b, hypotenuse = sides_triangle.sort
-if  hypotenuse**2 == leg_a**2 + leg_b**2
+
+if hypotenuse**2 == leg_a**2 + leg_b**2
   puts 'Треугольник прямоугольный'
 elsif leg_a == leg_b && leg_b == hypotenuse
-  puts 'Треугольник равнобедренный' 
-elsif leg_a == leg_b || leg_b == hypotenuse || hypotenuse == leg_a
   puts 'Треугольник равносторонний'
+elsif leg_a == leg_b || leg_b == hypotenuse || hypotenuse == leg_a
+  puts 'Треугольник равнобедренный'
 else
   puts 'Треугольник разносторонний'
 end
-
