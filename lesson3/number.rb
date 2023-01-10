@@ -4,18 +4,19 @@
 # 4. обновляем количество попыток
 
 MIN = 0
-MAX = 1000000000000000000000000
+MAX = 1_000_000_000_000_000_000_000_000
 
 INPUT_EQUEL = 'Вы выиграли!'
 INPUT_LOWER = 'Ваше число меньше загаданного!'
 INPUT_HIGER = 'Ваше число больше загаданного!'
+
 def right_guess?(users_guess, secret_number)
   if users_guess == secret_number
-    return INPUT_EQUEL
+    INPUT_EQUEL
   elsif users_guess < secret_number
-    return INPUT_LOWER
+    INPUT_LOWER
   elsif users_guess > secret_number
-    return INPUT_HIGER
+    INPUT_HIGER
   end
 end
 
@@ -27,14 +28,14 @@ max_namber = MAX
 loop do
   guess_result = right_guess?(current_guess, secret_number)
   case guess_result
-    when INPUT_EQUEL
-      puts "Победа! #{secret_number}"
-  break
-    when INPUT_LOWER
-      min_namber = current_guess
-      current_guess += ((max_namber - current_guess) / 2)
-    when INPUT_HIGER
-      max_namber = current_guess
-      current_guess -= ((current_guess - min_namber) / 2)
+  when INPUT_EQUEL
+    puts "Победа! #{secret_number}"
+    break
+  when INPUT_LOWER
+    min_namber = current_guess
+    current_guess += ((max_namber - current_guess) / 2)
+  when INPUT_HIGER
+    max_namber = current_guess
+    current_guess -= ((current_guess - min_namber) / 2)
   end
 end

@@ -10,22 +10,43 @@ shopping = {}
 check_amount = 0
 
 loop do
-  puts 'Введите название товара или (\ стоп \) для получения чека '
-  product = gets.chomp
+  product = nil
+  price = nil
+  product_quantity = nil
+
+  loop do
+    puts 'Введите название товара или (\ стоп \) для получения чека '
+    product = gets.strip
+    break unless shopping.key?(product)
+
+    puts 'Такой товар вы уже выбрали'
+  end
+
   break if product == 'стоп'
 
-  puts  'Введите цену'
-  price = gets.chomp.to_f
-  break if price <= 0
+  loop do
+    puts  'Введите цену'
+    price = gets.to_f
+    break if price >= 0
 
-  puts 'Введите кол-во товара'
-  product_quantity = gets.chomp.to_f
-  break if product_quantity <= 0
+    puts 'Не коректная цена'
+  end
+
+  loop do
+    puts 'Введите кол-во товара'
+    product_quantity = gets.to_f
+    break if product_quantity >= 0
+
+    puts 'Не правльное кол-во'
+  end
 
   shopping[product] = { 'price' => price, 'product_quantity' => product_quantity }
 end
 
+puts shopping
+
 shopping.each { |product, hash| check_amount += hash['price'] * hash['product_quantity'] }
 
-puts shopping
+shopping.each { |product, hash| puts "#{product} = #{hash['price'] * hash['product_quantity']}" }
+
 puts "Итоговая сумма #{check_amount}"
