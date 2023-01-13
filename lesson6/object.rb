@@ -1,40 +1,29 @@
+# Взять несколько предметов, которые вас окружают, и описать их, как классы. Создать по объекту каждого класса, сравнить их поведение.
+
+
 # 1-создать class предметов которые окружают
 # 2-сравнить обьекты 
-require 'pry'
 
-class Furniture
-  include Comparable
+class Pencil
+  attr_accessor :material, :view, :lead_hardness
 
-  attr_accessor :chair, :table, :sofa
-
-  def initialize(chair, table, sofa)
-    @chair    = chair
-    @table    = table
-    @sofa     = sofa
-  end
-
-end
-
-# home_furniture = Furniture.new('office', 'wooden', 'soft')
-
-class Home_Appliances
-  include Comparable
-  attr_accessor :smartphone, :laptop, :tv_set
-
-  def initialize(smartphone, laptop, tv_set)
-    @smartphone = smartphone
-    @laptop     = laptop
-    @tv_set     = tv_set
-  end
-  def == (other_ither)
-    value == other_ither.value
+  def initialize(material, view, lead_hardness)
+    @cmaterial     = material
+    @view          = view
+    @lead_hardness = lead_hardness
   end
 end
 
-# tehnic = Home_Appliances.new('huawei', 'hp', 'lg')
+working_pencil = Pencil.new('metal', 'automatic', 'hb')
 
+class Phone
+  attr_accessor :phone_type, :brend, :model
 
-binding.pry
+  def initialize(phone_type, brend, model)
+    @phone_type = phone_type
+    @brend      = brend
+    @model      = model
+  end
+end
 
-
-
+my_phone = Phone.new('mobile_phone', 'apple', 'iphone_2G')

@@ -1,7 +1,9 @@
+# Создать класс Soda (для определения типа газировки), принимающий 1 аргумент при инициализации (отвечающий за добавку к выбираемому лимонаду).
+# В этом классе реализуйте метод show my drink(), выводящий на печать «Газировка и {ДОБАВКА}» в случае наличия добавки,
+# а иначе отобразится следующая фраза: «Обычная газировка».
+
 # 1-Создать class принимающий аргумент
 # 2-Воспользоваться методом show my drink с выводом на экран фраз
-# require 'pry'
-
 class Soda
   attr_reader :addition
 
@@ -10,24 +12,13 @@ class Soda
   end
 
   def show_my_drink
-    # puts "Выберите с сиропом #{addition}или без"
-
-    # user_syrup = gets.strip
-
-    # until addition.include?(user_syrup)
-    #   puts "Вы выбрали не правильно, у вас есть выбор либо с #{addition}, либо на пропустите на 'enter'"
-    #   user_syrup = gets.strip
-    # end
-
-    if addition == ''
-      puts 'Обычная газировка'
-    else
+    if addition
       puts "Ваша выбор газировка с #{addition}"
+    else
+      puts 'Обычная газировка'
     end
   end
 end
 
 carbonated = Soda.new('cherry_syrup')
 carbonated.show_my_drink
-
-# binding.pry
