@@ -10,14 +10,14 @@ class Figure
 end
 
 class Circle < Figure
-  # PI = 3,14
+  PI = 3.14
 
   def area
-    puts "Area circle #{3.14 * side_a**2}"
+    puts "Area circle #{PI * side_a**2}"
   end
 
   def perimeter
-    puts "Perimeter of a circle #{2 * 3.14 * side_a}"
+    puts "Perimeter of a circle #{2 * PI * side_a}"
   end
 end
 class Square < Figure
@@ -57,7 +57,7 @@ class Triangle < Figure
   end
 
   def area
-    p = (side_a + side_b + side_c) / 2
+    p = (side_a + side_b + side_c) / 2.0
     puts "Area triangle  #{Math.sqrt(p * (p - side_a) * (p - side_b) * (p - side_c))}"
   end
 
