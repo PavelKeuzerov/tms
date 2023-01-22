@@ -34,7 +34,7 @@ class Animal
   end
 
   def eat
-    puts "Я ем #{food}"
+    puts 'Я ем все'
   end
 
   def sleep
@@ -114,10 +114,10 @@ end
 
 pes = Dog.new('meat', 'house', 'hunter')
 kit = Cat.new('fish', 'house', 'black')
-kon = Horse.new('oves', 'budka', 'fdfd')
+kon = Horse.new('corn', 'hippodrome', 'racehorse')
+pets = [pes, kit, kon]
 
 puts Animal.number_animals
 puts Vet.new.treatAnimal(kit)
 
-
-Animal.eat
+pets.each { |animal| Vet.new.treatAnimal(animal) }
