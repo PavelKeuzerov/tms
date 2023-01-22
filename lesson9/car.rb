@@ -9,7 +9,7 @@
 # 7) Пусть класс Driver расширяет класс Person.
 
 module Vehicles
-  class Car < Driver
+  class Car
     attr_accessor :model_car, :class_car, :car_weight
 
     def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
@@ -38,23 +38,6 @@ module Vehicles
       puts "Это автомобиль #{model_car}, #{class_car}, #{car_weight},с мотором #{power} производство #{manufacturer} и им управлят #{sex}, #{full_name}"
     end
   end
-
-  class Lorry < Car
-    attr_accessor :car_capacity
-
-    def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
-      @car_capacity = car_capacity
-      super
-    end
-  end
-
-  class SportCar < Car
-    attr_accessor :max_speed
-
-    def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
-      @max_speed = max_speed
-    end
-  end
 end
 
 module Professions
@@ -68,7 +51,29 @@ module Professions
   end
 end
 
-class Driver < Person
+class Lorry
+  include Vehicles, Professions
+
+  attr_accessor :car_capacity
+
+  def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
+    @car_capacity = car_capacity
+    super
+  end
+end
+
+class SportCar
+  include Vehicles
+  include Professions
+
+  attr_accessor :max_speed
+
+  def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
+    @max_speed = max_speed
+  end
+end
+
+class Driver
   attr_accessor :full_name, :driver_experience
 
   def initialize(sex, full_name, driver_experience)
@@ -78,10 +83,13 @@ class Driver < Person
   end
 end
 
-class Person
+class Person < Driver
   attr_accessor :sex
 
   def initialize
     @sex = sex
   end
 end
+
+a = Person.new('men')
+a.ff

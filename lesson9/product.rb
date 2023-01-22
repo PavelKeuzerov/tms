@@ -4,38 +4,40 @@
 # 4) Создать класс User, содержащий логин, пароль и объект класса Basket. Создать несколько объектов класса User.
 # 5) Вывести на консоль каталог продуктов.
 # 6) Вывести на консоль покупки посетителей магазина.
-
+require 'pry'
 class Product
   attr_accessor :name, :price, :rating
 
   def initialize(name, price, rating)
     @name = name
-    price = price
+    @price = price
     @rating = rating
   end
 end
 
-class Categoy
+class Category
   attr_accessor :name, :all_product
 
   def initialize(name, all_product)
     @name = name
-    @all_product = []
+    @all_product = all_product
   end
 
-  def catalog
+  def catalog(all_product)
+    all_product << all_product
     puts all_product
   end
 end
 
-class Basket < Categoy
+class Basket 
   attr_accessor :buy_product
 
   def initialize(buy_product)
-    @buy_product = []
+    @buy_product = buy_product
   end
 
-  def chek
+  def chek(buy_product)
+    buy_product = []
     puts buy_product
   end
 end
@@ -44,22 +46,22 @@ class User < Basket
   attr_accessor :login, :pasword
 
   def initialize(buy_product, login, pasword)
-    private
     @login = login
     @pasword = pasword
-    super
+    super(buy_product)
   end
 end
 
-cat1 = Categoy.new('vegetable', 'tomat, cucumber')
-cat2 = Categoy.new('frut', 'aplle, chery')
+cat1 = Category.new('vegetable', 'tomat')
+cat2 = Category.new('frut', 'aplle')
 
-user1 = User.new('', 'volk' '111')
-user2 = User.new('', 'zajc' '222')
+user1 = User.new('tomat', 'volk', '111')
+user2 = User.new('aplle', 'zajc', '222')
 
-p Categoy.catalog
+# p Category.catalog
 
-p Basket.chek
+ a = Basket.new('tomat')
 
 
 
+binding.pry
