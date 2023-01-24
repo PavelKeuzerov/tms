@@ -10,12 +10,14 @@
 
 module Vehicles
   class Car
-    attr_accessor :model_car, :class_car, :car_weight
+    attr_accessor :model_car, :class_car, :car_weight, :driver, :engine
 
-    def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
-      @model_car = model_car
-      @class_car = class_car
-      @car_weight = car_weight
+    def initialize(options)
+      @model_car = options[:model_car]
+      @class_car = options[:class_car]
+      @car_weight = options[:car_weight]
+      @driver = options[:driver]
+      @engine = options[:engine]
     end
 
     def start
@@ -35,7 +37,7 @@ module Vehicles
     end
 
     def to_s
-      puts "Это автомобиль #{model_car}, #{class_car}, #{car_weight},с мотором #{power} производство #{manufacturer} и им управлят #{sex}, #{full_name}"
+      puts "Это автомобиль #{model_car}, #{class_car}, #{car_weight},с мотором #{engine}, с водителем #{driver}"
     end
   end
 end
@@ -51,45 +53,40 @@ module Professions
   end
 end
 
-class Lorry
-  include Vehicles, Professions
-
+class Lorry < Vehicles::Car
   attr_accessor :car_capacity
 
-  def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
-    @car_capacity = car_capacity
+  def initialize(options)
     super
+    @car_capacity = options[:car_capacity]
   end
 end
 
-class SportCar
-  include Vehicles
-  include Professions
-
+class SportCar < Vehicles::Car
   attr_accessor :max_speed
 
-  def initialize(sex, full_name, driver_experience, model_car, class_car, car_weight)
-    @max_speed = max_speed
+  def initialize(options)
+    @max_speed = options[:max_speed]
+    super
   end
 end
 
 class Driver
   attr_accessor :full_name, :driver_experience
 
-  def initialize(sex, full_name, driver_experience)
+  def initialize(full_name, driver_experience)
     @full_name = full_name
     @driver_experience = driver_experience
-    super
   end
 end
 
 class Person < Driver
-  attr_accessor :sex
-
-  def initialize
-    @sex = sex
-  end
 end
 
-a = Person.new('men')
-a.ff
+lorry_motor = Professions::Engine.new('240', 'MMZ')
+sport_motor = Professions::Engine.new('452', 'GaZ')
+
+drive = Driver.new('Jason Statham' , '22')
+
+gaz = Lorry.new({ model_car: 'Gaz', class_car: 'gaz 53', car_weight: '3000', driver: drive, engine: lorry_motor, car_capacity: '10000'})
+volga = SportCar.new({ model_car: 'Volga', class_car: 'gaz 21', car_weight: '2300', driver: drive, engine: sport_motor, max_speed: '240'})
