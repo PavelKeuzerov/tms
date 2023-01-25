@@ -105,12 +105,12 @@ class Horse < Animal
   end
 end
 
-  class Vet 
-    def treatAnimal(animal)
-      puts animal.food
-      puts animal.location
-    end
+class Vet 
+  def treatAnimal(animal)
+    puts animal.food
+    puts animal.location
   end
+end
 
 pes = Dog.new('meat', 'house', 'hunter')
 kit = Cat.new('fish', 'house', 'black')

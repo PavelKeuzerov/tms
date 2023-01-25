@@ -1,13 +1,7 @@
 # Создать свой аналог класса Array, String, Hash (на выбор). 
 # При этом все методы класса должны хранится в разделенных по смыслу модулях (модули создание, добавления, удаления, вывода, каких-либо изменений)
 
-module Add
-  attr_accessor :numbers
-
-  def initialize(numbers)
-    @numbers = numbers
-  end
-
+module Countbl
   def size
     count = 0
     numbers.each_char { |char| count += 1 }
@@ -15,7 +9,7 @@ module Add
   end
 end
 
-module Del
+module Deletebl
   def delete(del)
     new_str = ''
     numbers.each_char { |char| new_str += char unless char == del.to_s }
@@ -24,11 +18,16 @@ module Del
 end
 
 class Str
-  include Add
-  include Del
+  include Countbl
+  include Deletebl
+  attr_accessor :numbers
+
+  def initialize(numbers)
+    @numbers = numbers
+  end
 end
 
 str = Str.new('23543')
 
 p str.size
-p str.delete(3)
+p str.delete(2)
