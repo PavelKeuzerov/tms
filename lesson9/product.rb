@@ -13,6 +13,10 @@ class Product
     @price = price
     @rating = rating
   end
+
+  def name_producs
+    puts "product_name: #{product_name}, price: #{price}, rating: #{rating}"
+  end
 end
 
 class Category
@@ -25,12 +29,11 @@ class Category
 
   def puts_product(add_product)
     all_product << add_product
-    all_product[add_product] = { product_name: add_product.product_name, price: add_product.price, rating: add_product.rating }
   end
 
   def catalog
-    puts all_product
     puts name
+    all_product.map(&:name_producs)
   end
 end
 
@@ -45,28 +48,36 @@ end
 class User 
   attr_accessor :login, :pasword, :basket
 
-  def initialize(login, pasword, basket)
+  def initialize(login, pasword, product)
     @login = login
     @pasword = pasword
-    @basket = Basket.new
+    @basket = Basket.new(product)
   end
 
-  def buy_product(shop)
-    buy_product << shop
-    basket.buy_product[shop] = { product_name: shop.product_name, price: shop.price, rating: shop.rating }
-    puts login, pasword
-    puts buy_product
+  def product(shop)
+    basket.buy_product << shop
+  end
+
+  def shoping_products
+    puts login
+    puts pasword
+    basket.buy_product.map(&:name_producs)
   end
 end
 
 chappi = Product.new('Chappi', 3.5, 1)
 viskas = Product.new('Viskas', 2.5, 2)
+ketiket =  Product.new('Ketiket', 1.5, 2)
+proplan =  Product.new('Proplan', 4.5, 3)
 
-dog_products = Category.new('Dog food', [chappi])
-cat_products = Category.new('Cat food', [viskas])
+dog = Category.new('Dog food', [chappi, proplan])
+cat = Category.new('Cat food', [viskas, ketiket])
 
 pes = User.new('Pes', 'Pes123', [chappi])
-cit = User.new('Cit', 'Cit232', [viskas])
+cit = User.new('Cit', 'Cit232', [ketiket])
 
-# cit.buy_product.([viskas])
-# pes.buy_product([chappi])
+cit.shoping_products
+pes.shoping_products
+
+dog.catalog
+cat.catalog
