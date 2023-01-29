@@ -6,10 +6,10 @@
 # 6) Вывести на консоль покупки посетителей магазина.
 
 class Product
-  attr_accessor :name, :price, :rating
+  attr_accessor :product_name, :price, :rating
 
-  def initialize(name, price, rating)
-    @name = name
+  def initialize(product_name, price, rating)
+    @product_name = product_name
     @price = price
     @rating = rating
   end
@@ -18,9 +18,14 @@ end
 class Category
   attr_accessor :name, :all_product
 
-  def initialize(name, all_product)
-    @all_product = []
+  def initialize(name, all_product = [])
     @name = name
+    @all_product = all_product
+  end
+
+  def puts_product(add_product)
+    all_product << add_product
+    all_product[add_product] = { product_name: add_product.product_name, price: add_product.price, rating: add_product.rating }
   end
 
   def catalog
@@ -32,40 +37,36 @@ end
 class Basket
   attr_accessor :buy_product
 
-  def initialize(buy_product)
-    @buy_product = []
-  end
-
-  def chek
-    puts buy_product
+  def initialize(buy_product = [])
+    @buy_product = buy_product
   end
 end
 
-class User < Basket
-  attr_accessor :login, :pasword
+class User 
+  attr_accessor :login, :pasword, :basket
 
-  def initialize(buy_product, login, pasword)
+  def initialize(login, pasword, basket)
     @login = login
     @pasword = pasword
-    super(buy_product)
+    @basket = Basket.new
   end
 
-  def buy_product
-    buy_product.each { |all_product| buy_product << all_product }
+  def buy_product(shop)
+    buy_product << shop
+    basket.buy_product[shop] = { product_name: shop.product_name, price: shop.price, rating: shop.rating }
     puts login, pasword
     puts buy_product
   end
 end
 
-cat1 = Category.new('vegetable', '')
-veget = cat1.all_product.push('tomat', 'cucumber') 
-puts cat1.catalog
+chappi = Product.new('Chappi', 3.5, 1)
+viskas = Product.new('Viskas', 2.5, 2)
 
-cat2 = Category.new('frut', '')
-frut = cat2.all_product.push('apple', 'chery')
-puts cat2.catalog
+dog_products = Category.new('Dog food', [chappi])
+cat_products = Category.new('Cat food', [viskas])
 
+pes = User.new('Pes', 'Pes123', [chappi])
+cit = User.new('Cit', 'Cit232', [viskas])
 
-user1 = User.new('', 'volk', '111')
-puts user1.buy_product
-user2 = User.new('', 'zajc', '222')
+# cit.buy_product.([viskas])
+# pes.buy_product([chappi])
