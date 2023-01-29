@@ -9,5 +9,40 @@
 # Обработка исключений проводится внутри метода.
 # Метод возвращает true, если значения верны или false в другом случае. 
 
+class Verification
+  attr_accessor :login, :password, :confirm_password
 
-def initialize(login,password,confirm_password)
+  def initialize(login, password, confirm_password)
+    @login = login
+    @password = password
+    @confirm_password = confirm_password
+  end
+
+  def login_input
+    login = /^[a-zA-Z][a-zA-Z0-9-_]{20}$/
+    rescue WrongLoginException => err
+      puts "An error has occurred #{err.class.name}"
+      puts err.message
+  end
+
+  def password_input
+    password = /(?=^.{20,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
+    # password = ('a'..'z' && (1..10) && '_').match < CHARACTES
+    rescue WrongPasswordException => err
+      puts "An error has occurred #{err.class.name}"
+      puts err.message
+  end
+
+  def confirm_password
+    confirm_password == password
+    rescue WrongPasswordException => err
+      puts "An error has occurred #{err.class.name}"
+      puts err.message
+    rescue StandardError
+      puts 'confirm_password does not match passworrd'
+  end
+end
+
+a = Verification.new('sd_334rgty678ujnbfder', 'a_s', 's_d')
+p a.login_input
+

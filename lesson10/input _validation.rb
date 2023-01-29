@@ -16,5 +16,5 @@ class Valid
   end
 end
 
-  data = Valid.new('1khjf21312')
+  data = Valid.new('ddswd')
   puts data.input
