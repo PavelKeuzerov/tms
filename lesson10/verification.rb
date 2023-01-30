@@ -9,8 +9,7 @@
 # Обработка исключений проводится внутри метода.
 # Метод возвращает true, если значения верны или false в другом случае. 
 
-class Login < StandardError
-  LOGIN = /^[a-zA-Z][a-zA-Z0-9]_\.{1,20}$/
+class WrongLoginException < StandardError
   attr_accessor :login
 
   def initialize(login)
@@ -18,15 +17,14 @@ class Login < StandardError
   end
 
   def login_input
-    login == LOGIN
+    login == /^[a-zA-Z][a-zA-Z0-9]_\.{1,20}$/z
     rescue WrongLoginException => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
   end
 end
 
-class Passwords < StandardError
-  PASSWORD = /^[a-zA-Z][a-zA-Z0-9]_\.{1,20}$/
+class WrongPasswordException < StandardError
   attr_accessor :password, :confirm_password
 
   def initialize(password, confirm_password)
@@ -35,27 +33,25 @@ class Passwords < StandardError
   end
 
   def pasword_input
-    password == PASSWORD
+    password == /^[a-zA-Z][a-zA-Z0-9]_\.{1,20}$/
     rescue WrongPasswordException => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
   end
 
-  def confirm_password
-    begin
+  def confirm_password(pasword_input)
     confirm_password == password
     rescue WrongPasswordException => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
     rescue StandardError
       puts 'confirm_password does not match passworrd'
-    end
   end
 end
 
-a = Login.new('sd_334rgty678ujnbfder')
-b = Passwords.new('afaf_2121', 'asassa12_21')
+a = WrongLoginException.new('sd_334rgty678ujnbfder')
+b = WrongPasswordException.new('afaf_2121', 'asassa12_21')
 p a.login_input
 p b.pasword_input
-p b.confirm_password
+# p b.confirm_password
 
