@@ -2,57 +2,53 @@
 # Создать иподром добавить 
 # Добавить животных
 # Узнать за каое время они пробегут дистанцию 1000м 
-require 'pry'
-
-class TimeDIstans
-  def self.distance
-    res = yield
-    puts "Time #{animals.speed * hippodrome.distance}"
-    res
-  end
-end
 
 class Hippodrome
-  attr_reader :distance, :animal
+  attr_reader :distance, :animals
 
-  def initialize(distance, animal = [])
+  def initialize(distance, animals = [])
     @distance = distance
-    @animal = animal
+    @animals = animals
   end
 
-  def add_animal(animal)
-    @animal << animal
-    add_animal[animal] = { type: add_animal.type, speed: add_animal.speed }
+  def add_animals(add_animal)
+    animals << add_animal
   end
 
-  def filter_by_type(type)
-    animal_selector { |animal| animal.type == type }
+  def type(type)
+    selector { |animal| animal.type == type }
   end
 
-  def filter_by_speed(speed)
-    animal_selector { |speed| animal.speed == speed }
+  def speed(speed)
+    selector { |animal| animal.speed == speed }
   end
 
-  def animal_distance
-    TimeDIstans.distance { @animal.select { |animal| yield(animal) } }
+  def name(name)
+    selector { |animal| animal.name == name }
+  end
+
+  def selector
+    animals.select { |animal| yield(animal) }
   end
 end
 
 class Animal
-  attr_reader :type, :speed
+  attr_reader :type, :speed, :name
 
-  def initialize(type, speed)
+  def initialize(type, speed, name)
     @type = type
     @speed = speed
+    @name = name
+  end
+
+  def all_animal
+    puts "type: #{type}, speed: #{speed}, name: #{name}"
   end
 end
 
-dog = Animal.new('dog', '11')
-horse = Animal.new('horse', '44')
-rabbit = Animal.new('rabbit', '12')
+dog = Animal.new('dog', '11', 'sharik')
+horse1 = Animal.new('horse', '44', 'mustang')
+horse2 = Animal.new('horse', '43', 'savraska')
+rabbit = Animal.new('rabbit', '12', 'rodger')
 
-a = Hippodrome.new('1000', [dog, horse, rabbit])
-# a.add_animal(h)
-# a.add_animal(Animal.new('rabbit', '12'))
-
-binding.pry
+running_animals = Hippodrome.new(1000, [dog, horse1, horse2, rabbit])
