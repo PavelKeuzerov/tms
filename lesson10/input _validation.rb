@@ -10,11 +10,12 @@ class Valid
   def input
     Integer(input_data)
       puts 'Ok'
-    rescue Exception => err
+    rescue ArgumentError => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
   end
 end
 
-  data = Valid.new('ddswd')
-  puts data.input
+  number = Valid.new('ddswd')
+
+  puts number.input

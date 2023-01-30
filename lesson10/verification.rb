@@ -9,40 +9,53 @@
 # Обработка исключений проводится внутри метода.
 # Метод возвращает true, если значения верны или false в другом случае. 
 
-class Verification
-  attr_accessor :login, :password, :confirm_password
+class Login < StandardError
+  LOGIN = /^[a-zA-Z][a-zA-Z0-9]_\.{1,20}$/
+  attr_accessor :login
 
-  def initialize(login, password, confirm_password)
+  def initialize(login)
     @login = login
-    @password = password
-    @confirm_password = confirm_password
   end
 
   def login_input
-    login = /^[a-zA-Z][a-zA-Z0-9-_]{20}$/
+    login == LOGIN
     rescue WrongLoginException => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
   end
+end
 
-  def password_input
-    password = /(?=^.{20,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
-    # password = ('a'..'z' && (1..10) && '_').match < CHARACTES
+class Passwords < StandardError
+  PASSWORD = /^[a-zA-Z][a-zA-Z0-9]_\.{1,20}$/
+  attr_accessor :password, :confirm_password
+
+  def initialize(password, confirm_password)
+    @password = password
+    @confirm_password = confirm_password
+  end
+
+  def pasword_input
+    password == PASSWORD
     rescue WrongPasswordException => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
   end
 
   def confirm_password
+    begin
     confirm_password == password
     rescue WrongPasswordException => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
     rescue StandardError
       puts 'confirm_password does not match passworrd'
+    end
   end
 end
 
-a = Verification.new('sd_334rgty678ujnbfder', 'a_s', 's_d')
+a = Login.new('sd_334rgty678ujnbfder')
+b = Passwords.new('afaf_2121', 'asassa12_21')
 p a.login_input
+p b.pasword_input
+p b.confirm_password
 
