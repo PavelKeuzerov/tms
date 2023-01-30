@@ -9,7 +9,7 @@ class Valid
 
   def input
     Integer(input_data)
-      puts 'Ok'
+      puts 'Ok right'
     rescue ArgumentError => err
       puts "An error has occurred #{err.class.name}"
       puts err.message
