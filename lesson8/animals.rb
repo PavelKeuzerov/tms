@@ -1,11 +1,11 @@
-# 1. Создать класс Animal и расширяющие его классы Dog, Cat, Horse. Класс Animal должен содержать переменную класса, отвечающую за количество созданных объектов. 
+# 1. Создать класс Animal и расширяющие его классы Dog, Cat, Horse. Класс Animal должен содержать переменную класса, отвечающую за количество созданных объектов.
 #    Также у него должен быть метод класса, выводящий это количество
-# 2. Класс Animal содержит переменные food, location и методы makeNoise, eat, sleep. Метод makeNoise, 
+# 2. Класс Animal содержит переменные food, location и методы makeNoise, eat, sleep. Метод makeNoise,
 #    например, может выводить на консоль "Такое-то животное спит". 
 # 3. Dog, Cat, Horse переопределяют методы makeNoise, eat. 
 # 4. Добавьте переменные в классы Dog, Cat, Horse, характеризующие только этих животных.
 # 5. Создайте класс Ветеринар, в котором определите метод treatAnimal(animal). Пусть этот метод распечатывает food и location пришедшего на прием животного.
-# 6. Создайте массив различных животных, в который запишите животных всех имеющихся у вас типов. В цикле отправляйте их на прием к ветеринару. 
+# 6. Создайте массив различных животных, в который запишите животных всех имеющихся у вас типов. В цикле отправляйте их на прием к ветеринару.
 #    Выведите их количество
 
 class Animal
@@ -29,16 +29,16 @@ class Animal
     puts @@number_animals
   end
 
-  def makeNoise
-    puts 'Такое живодное спит'
+  def make_noise
+    puts 'Such an animal sleeps'
   end
 
   def eat
-    puts 'Я ем все'
+    puts 'I eat everything'
   end
 
   def sleep
-    puts 'Я проснулся'
+    puts 'I woke up'
   end
 end
 
@@ -50,16 +50,16 @@ class Dog < Animal
     super(food, location)
   end
 
-  def makeNoise
-    puts 'Кто то пришел'
+  def make_noise
+    puts 'Someone came'
   end
 
   def eat
-    puts 'Моя любимоя еда мясо'
+    puts 'My favorite food is meat'
   end
 
   def sleep
-    puts 'Еще рано'
+    puts 'It is too early'
   end
 end
 
@@ -71,16 +71,16 @@ class Cat < Animal
     super(food, location)
   end
 
-  def makeNoise
-    puts 'Кажется мышь'
+  def make_noise
+    puts 'It seems a mouse'
   end
 
   def eat
-    puts 'Моя любимоя еда молоко'
+    puts 'My favorite food is milk'
   end
 
   def sleep
-    puts 'Я всегда сплю'
+    puts 'I always sleep'
   end
 end
 
@@ -92,21 +92,21 @@ class Horse < Animal
     super(food, location)
   end
 
-  def makeNoise
-    puts 'Я люблю бег'
+  def make_noise
+    puts 'I love running'
   end
 
   def eat
-    puts 'Моя любимоя еда овес'
+    puts 'My favorite food is oats'
   end
 
   def sleep
-    puts 'Не время спать'
+    puts 'No time to sleep'
   end
 end
 
-class Vet 
-  def treatAnimal(animal)
+class Vet
+  def treat_animal(animal)
     puts animal.food
     puts animal.location
   end
@@ -118,6 +118,6 @@ kon = Horse.new('corn', 'hippodrome', 'racehorse')
 pets = [pes, kit, kon]
 
 puts Animal.number_animals
-puts Vet.new.treatAnimal(kit)
+puts Vet.new.treat_animal(kit)
 
-pets.each { |animal| Vet.new.treatAnimal(animal) }
+pets.each { |animal| Vet.new.treat_animal(animal) }

@@ -1,10 +1,10 @@
-# Создать свой аналог класса Array, String, Hash (на выбор). 
+# Создать свой аналог класса Array, String, Hash (на выбор).
 # При этом все методы класса должны хранится в разделенных по смыслу модулях (модули создание, добавления, удаления, вывода, каких-либо изменений)
 
 module Countbl
   def size
     count = 0
-    numbers.each_char { |char| count += 1 }
+    numbers.each_char { |_char| count += 1 }
     count
   end
 end
