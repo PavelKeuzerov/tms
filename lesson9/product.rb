@@ -45,7 +45,7 @@ class Basket
   end
 end
 
-class User 
+class User
   attr_accessor :login, :pasword, :basket
 
   def initialize(login, pasword, product)

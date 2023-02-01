@@ -21,23 +21,24 @@ module Vehicles
     end
 
     def start
-      puts 'Поехали'
+      puts 'Start'
     end
 
     def stop
-      puts 'Остановитесь'
+      puts 'Stop'
     end
 
     def turn_right
-      puts 'Поворот на лево'
+      puts 'Left turn'
     end
 
     def tern_left
-      puts 'Поворот на право'
+      puts 'Right turn'
     end
 
     def to_s
-      puts "Это автомобиль #{model_car}, #{class_car}, #{car_weight},с мотором #{engine.power}, #{engine.manufacturer}, с водителем #{driver.full_name}, #{driver.driver_experience}"
+      puts "This car #{model_car}, #{class_car}, #{car_weight},with motor #{engine.power}, make #{engine.manufacturer},
+            with a driver #{driver.full_name}, driving experience #{driver.driver_experience}"
     end
   end
 
@@ -88,8 +89,10 @@ sport_motor = Professions::Engine.new('452', 'GaZ')
 
 drive = Driver.new('Jason Statham', '22')
 
-gaz = Vehicles::Lorry.new({ model_car: 'Gaz', class_car: 'gaz 53', car_weight: '3000', driver: drive, engine: lorry_motor, car_capacity: '10000'})
-volga = Vehicles::SportCar.new({ model_car: 'Volga', class_car: 'gaz 21', car_weight: '2300', driver: drive, engine: sport_motor, max_speed: '240'})
+gaz = Vehicles::Lorry.new({ model_car: 'Gaz', class_car: 'gaz 53', car_weight: '3000', driver: drive,
+                            engine: lorry_motor, car_capacity: '10000' })
+volga = Vehicles::SportCar.new({ model_car: 'Volga', class_car: 'gaz 21', car_weight: '2300', driver: drive,
+                                 engine: sport_motor, max_speed: '240' })
 
 gaz.to_s
 volga.to_s
