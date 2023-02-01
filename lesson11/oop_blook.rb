@@ -1,7 +1,6 @@
 # Взять задание с темы ООП и переписать методы с использованием блоков, Proc и lambda 
-# Создать иподром добавить 
-# Добавить животных
-# Узнать за каое время они пробегут дистанцию 1000м 
+# Создать иподром добавить
+# Добавить животных в методы
 
 class Hippodrome
   attr_reader :distance, :animals
@@ -27,8 +26,8 @@ class Hippodrome
     selector { |animal| animal.name == name }
   end
 
-  def selector
-    animals.select { |animal| yield(animal) }
+  def selector(&block)
+    animals.select(&block)
   end
 end
 
@@ -39,10 +38,6 @@ class Animal
     @type = type
     @speed = speed
     @name = name
-  end
-
-  def all_animal
-    puts "type: #{type}, speed: #{speed}, name: #{name}"
   end
 end
 
