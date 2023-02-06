@@ -72,6 +72,6 @@ end
 
 a = WrongLoginException.new('s&&&')
 b = WrongPasswordException.new('afaf_2121', 'asassa12_21')
-p a.login_input
+# p a.login_input
 # p b.password_input
 # p b.confirm_password
