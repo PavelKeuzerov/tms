@@ -53,5 +53,5 @@ a = WrongLoginException.new('sd_334rgty678ujnbfder')
 b = WrongPasswordException.new('afaf_2121', 'asassa12_21')
 p a.login_input
 p b.pasword_input
-# p b.confirm_password
+
 

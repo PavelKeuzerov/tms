@@ -8,13 +8,19 @@ class Valid
   end
 
   def input
-    Integer(input_data)
-    puts 'Ok right'
-  rescue ArgumentError => e
-    puts "An error has occurred #{e.class.name}"
-    puts e.message
+    raise "You entered #{input_data}" unless input_data.instance_of?(Integer)
+
+    puts 'OK'
   end
+
+  # def input
+  #   Integer(input_data)
+  #   puts 'Ok right'
+  # rescue ArgumentError => e
+  #   puts "An error has occurred #{e.class.name}"
+  #   puts e.message
+  # end
 end
 
-number = Valid.new('ddswd')
+number = Valid.new(1)
 puts number.input
