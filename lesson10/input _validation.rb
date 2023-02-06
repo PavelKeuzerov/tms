@@ -8,19 +8,11 @@ class Valid
   end
 
   def input
-    raise "You entered #{input_data}" unless input_data.instance_of?(Integer)
+    raise "You entered #{input_data}" unless input_data.instance_of?(Integer) || input_data.instance_of?(Float)
 
     puts 'OK'
   end
-
-  # def input
-  #   Integer(input_data)
-  #   puts 'Ok right'
-  # rescue ArgumentError => e
-  #   puts "An error has occurred #{e.class.name}"
-  #   puts e.message
-  # end
 end
 
-number = Valid.new(1)
+number = Valid.new('1sd')
 puts number.input
