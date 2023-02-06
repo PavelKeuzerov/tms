@@ -1,15 +1,9 @@
+# frozen_string_literal: true
+
 # Воспользуйтесь возможностями метапрограммирования и добавьте его в свои предыдущие работы.
 # (Синглтон-методы, синглтон-классы, define_method, send, instance_eval, class_eval)
 
 class Dog
-  class << self
-    def inherited(subclass)
-      subclass.class_eval do
-        attr_reader(*attr)
-      end
-      super
-    end
-  end
   attr_reader :age, :name
 
   def initialize(age, name)
@@ -17,18 +11,23 @@ class Dog
     @name = name
   end
 
-  def speak_age
-    puts "My age #{age}"
-  end
-
   def speak_name
     puts "My name #{name}"
   end
+
+  def method_missing(method_name, *_args)
+    if method_name == :speak_age
+      puts "My age #{age}"
+    else
+      super
+      puts "NO method #{method_name}"
+    end
+  end
+
+  def respond_to_missing?(method, *_args)
+    method == method_name || super
+  end
 end
 
-class HunterDog < Dog
-end
-
-dogs = HunterDog.new('2', 'Nikodim')
-dogs.speak_age
-dogs.speak_name
+dog = Dog.new('1', 'Nikodim')
+dog.speak_age
