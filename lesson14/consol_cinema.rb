@@ -70,7 +70,7 @@ class Tickets
     @film = {}
   end
 
-  def row_selection
+  def cinema_row_selection
     puts "Choose row #{row}"
     user_row = gets.strip
     until row.include?(user_row)
@@ -79,7 +79,7 @@ class Tickets
     end
   end
 
-  def place_selection
+  def cinema_seat_selection
     puts "Choose place #{place}"
     user_place = gets.strip
     until place.include?(user_place)
@@ -97,7 +97,7 @@ class Tickets
   end
 
   def films_select
-    film.each_value { |key| puts key[:name] }
+    film.each_value { |key| puts key[:genre] }
   end
 
   def add_session(new_session)
@@ -147,27 +147,21 @@ end
 
 terminator = Movie.new('action', 'Terminator', '2:05')
 shrek = Movie.new('cartoon', 'Shrek', '1:40')
-# terminator.info_movies
-# shrek.info_movies
 
 evening = Session.new('Evening session', '5')
 afternoon = Session.new('Afternoon session', '3')
-# evening.info_session
-# afternoon.info_session
 
 tik = Tickets.new([], [])
 tik.add_session(evening)
 tik.add_session(afternoon)
 tik.add_film(terminator)
 tik.add_film(shrek)
-# tik.info_free_ticket
-tik.sessions_select
-tik.films_select
+tik.info_free_ticket
+
 
 nikodim = User.new
 
-# nikodim.user_verification
-# tik.row_selection
-# tik.place_selection
-
-# nikodim.send_email
+nikodim.user_verification
+tik.cinema_row_selection
+tik.cinema_seat_selection
+nikodim.send_email
