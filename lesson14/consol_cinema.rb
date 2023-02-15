@@ -129,7 +129,7 @@ terminator = Movie.new('action', 'Terminator', '2:05')
 shrek = Movie.new('cartoon', 'Shrek', '1:40')
 
 evening = Session.new('Evening session', '5 BYN')
-afternoon = Session.new('Afternoon session', '3 BYN')
+afternoon = Session.new('Afternoon session', '4 BYN')
 evening.add_film(terminator)
 afternoon.add_film(shrek)
 
