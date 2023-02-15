@@ -1,38 +1,3 @@
-# frozen_string_literal: true
-
-# Разработка автоматизированной системы работы кинотеатра
-#
-#   Movie
-#     принимает параметры (жанр, название фильма, продолжительность)
-
-#   Session принимает
-#     тип сеанса
-#     цену
-#     фильм который идет на этом сеансе
-
-# - Tickets
-#     имеет колво рядов
-#     кол-во мест
-#     выбор фильма
-#     выбор сеанса
-# #   выводит данные билета
-#
-# - User
-#    авторизация пользователя должен иметь  login, pasword(должен содержать 10 символовол с заглавными буквами и цифрами - опционально)
-#    обработать ошибку по вводу login, pasword (применить обработку исключения пока не пройдет правильную верификацию)
-#    выбор либо остаться в личном кобинете либо приступить к покупке билета либо показать купленные билеты
-#    вывести хэш с сеансами и предлогаемыми фильмами
-#    отсортировать/отфильтровать сеансы и фильмы по параметрам
-#    покупка билетов
-#    вывести информацию о выбраном сеансе с параметром фильма
-#    получить чек о купленном сеансе с информацией на email
-
-#   Консоль
-# 1 - Авторизация (вход в личный кабинет)
-# 2 - Получить данные о сеансах с фильмах (вывод на экран всех фильмов)
-#   - сортировка по пораметрам
-# 3 - Покупка билета на сеанс
-
 class Movie
   attr_accessor :genre, :name, :timing
 
@@ -48,26 +13,34 @@ class Movie
 end
 
 class Session
-  attr_accessor :type, :price
+  attr_accessor :type, :price, :films
 
   def initialize(type, price)
     @type = type
     @price = price
+    @films = {}
+  end
+
+  def add_film(new_film)
+    films[new_film] = { genre: new_film.genre, name: new_film.name, timing: new_film.timing }
+  end
+
+  def info
+    films.values.join(', ')
   end
 
   def info_session
-    puts "#{type}, price #{price}"
+    puts "#{type}, price #{price}, movie #{info}"
   end
 end
 
 class Tickets
-  attr_accessor :row, :place, :session, :film
+  attr_accessor :row, :place, :session
 
-  def initialize(_session, _film)
+  def initialize
     @row = %w[first second third]
     @place = %w[1 2 3]
     @session = {}
-    @film = {}
   end
 
   def cinema_row_selection
@@ -88,16 +61,19 @@ class Tickets
     end
   end
 
-  def add_film(new_film)
-    film[new_film] = { genre: new_film.genre, name: new_film.name, timing: new_film.timing }
-  end
-
-  def info_film
-    film.values.join(', ')
-  end
-
-  def films_select
-    film.each_value { |key| puts key[:genre] }
+  def cinema_film_session_selection
+    puts 'Select a session to watch'
+    puts '1 - Evening session, 2 - Afternoon session'
+    puts 'puts (1,2)'
+    user_input = gets.to_i
+    case user_input
+    when 1
+      session_select_evening
+    when 2
+      session_select_afternoon
+    else
+      puts 'Wrong choice'
+    end
   end
 
   def add_session(new_session)
@@ -108,12 +84,16 @@ class Tickets
     session.values.join(', ')
   end
 
-  def sessions_select
-    session.each_value { |key| puts key[:type] }
+  def session_select_evening
+    session.each_value { |key| puts key[:type], key[:price] if key[:type] == 'Evening session' }
+  end
+
+  def session_select_afternoon
+    session.each_value { |key| puts key[:type], key[:price] if key[:type] == 'Afternoon session' }
   end
 
   def info_free_ticket
-    puts " Row - #{row}, Place - #{place}, Films -  #{info_film}, Sessions - #{info_session}"
+    puts " Row - #{row}, Place - #{place}, Sessions - #{info_session}"
   end
 end
 
@@ -141,27 +121,26 @@ class User
     user_email = gets.strip
     raise 'Incorrect data entry' unless user_email.match(/^[a-z0-9]+@[a-z0-9]+\.[a-z]+/)
 
-    puts 'Letter sent'
+    puts 'An email will be sent when the service is up and running'
   end
 end
 
 terminator = Movie.new('action', 'Terminator', '2:05')
 shrek = Movie.new('cartoon', 'Shrek', '1:40')
 
-evening = Session.new('Evening session', '5')
-afternoon = Session.new('Afternoon session', '3')
+evening = Session.new('Evening session', '5 BYN')
+afternoon = Session.new('Afternoon session', '3 BYN')
+evening.add_film(terminator)
+afternoon.add_film(shrek)
 
-tik = Tickets.new([], [])
+tik = Tickets.new
 tik.add_session(evening)
 tik.add_session(afternoon)
-tik.add_film(terminator)
-tik.add_film(shrek)
-tik.info_free_ticket
-
 
 nikodim = User.new
-
 nikodim.user_verification
+tik.info_free_ticket
 tik.cinema_row_selection
 tik.cinema_seat_selection
+tik.cinema_film_session_selection
 nikodim.send_email
