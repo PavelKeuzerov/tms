@@ -11,7 +11,7 @@ class Chucky
   def speak_chuk
     category = Curl.get(HOST + CATEGORY_PATH)
     chuck = JSON(category.body)
-    puts 'Choose a category for the joke from 1 to 16'
+    puts 'Choose a category'
     chuck.map.with_index do |element, index|
       puts "#{index + 1}: #{element}"
     end
