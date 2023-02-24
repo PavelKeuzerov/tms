@@ -1,3 +1,4 @@
+
 class Movie
   attr_accessor :genre, :name, :timing
 
