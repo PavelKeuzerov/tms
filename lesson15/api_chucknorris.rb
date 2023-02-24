@@ -4,19 +4,22 @@ require 'curb'
 require 'json'
 
 class Chucky
-  NUMBER_CATEGOIES = 15
+  HOST = 'https://api.chucknorris.io'
+  CATEGORY_PATH = '/jokes/categories'
+  JOKE_BY_CATEGORY = '/jokes/random?category='
 
   def speak_chuk
-    category = Curl.get('https://api.chucknorris.io/jokes/categories')
-    chuck = JSON category.body
+    category = Curl.get(HOST + CATEGORY_PATH)
+    chuck = JSON(category.body)
     puts 'Choose a category for the joke from 1 to 16'
     chuck.map.with_index do |element, index|
       puts "#{index + 1}: #{element}"
     end
-    category_selection = gets.strip.to_i - 1
+    category_selection = gets.to_i + 1
+    raise 'ERROR - wrong category selection' unless (0...chuck.size).include?(category_selection)
+
     random_category = chuck[category_selection]
-    chuck_category = Curl.get("https://api.chucknorris.io/jokes/random?category=#{random_category}")
-    raise 'ERROR - wrong category selection' if category_selection > NUMBER_CATEGOIES
+    chuck_category =  Curl.get(HOST + JOKE_BY_CATEGORY + random_category)
 
     puts JSON.parse(chuck_category.body)['value']
   end
