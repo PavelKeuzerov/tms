@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get '/my_name', to: 'name#my_name'
-  get '/joke', to: 'chuck#speak_chuk'
+  get '/random_joke', to: 'chuck#random_joke'
+  get '/category', to: 'chuck#category'
+  get '/search_jokes', to: 'chuck#search'
+  get '/joke_category', to: 'chuck#joke_category'
 end
