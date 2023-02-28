@@ -1,4 +1,4 @@
-class NameController < ActionController::Base
+class NameController < ApplicationController
   def my_name
     name = 'Hello, my name Pavel Keuzerov'
 
