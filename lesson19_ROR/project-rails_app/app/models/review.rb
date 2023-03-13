@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
-  has_one :castomers
-  has_one :book
+  belongs_to :castomers
+  belongs_to :book
 end

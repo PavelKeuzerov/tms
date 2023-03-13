@@ -48,4 +48,5 @@ end
 
 gem 'faker'
 gem 'rubocop'
-gem 'solargraph'
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
