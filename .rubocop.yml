@@ -14,7 +14,5 @@ AllCops:
 Excludes:
   - db/schema.rb
 
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
-  
-  require: rubocop-rails
+
+

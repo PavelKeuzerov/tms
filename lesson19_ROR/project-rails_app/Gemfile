@@ -48,5 +48,4 @@ end
 
 gem 'faker'
 gem 'rubocop'
-gem 'rubocop', require: false
-gem 'rubocop-rails', require: false
+gem 'rubocop-rails'

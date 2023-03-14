@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
-  belongs_to :castomer
+  belongs_to :customer
   has_and_belongs_to_many :books
 end
