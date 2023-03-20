@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_181348) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_16_190749) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,10 +40,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_181348) do
     t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_books_on_title"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coments", force: :cascade do |t|
+    t.string "title"
+    t.string "message"
+    t.bigint "user_id"
+    t.bigint "boor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,6 +100,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_181348) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rewiews", force: :cascade do |t|
+    t.string "title"
+    t.string "message"
+    t.bigint "user_id"
+    t.bigint "boor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "suplliers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -102,8 +121,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_181348) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "confirmed"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
