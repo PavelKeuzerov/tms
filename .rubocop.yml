@@ -10,20 +10,3 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Enabled: false
 
-# AllCops:
-# Excludes:
-#   - db/schema.rb
-
-
-
-# Style/FrozenStringLiteralComment:
-#   Enabled: false
-
-# Style/HashEachMethods:
-#   Enabled: true
-
-# Style/HashTransformKeys:
-#   Enabled: true
-
-# Style/HashTransformValues:
-#   Enabled: true

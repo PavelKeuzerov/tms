@@ -22,6 +22,6 @@ class UserLes20 < ApplicationRecord
   validates :email, uniqueness: true
   validates :passwors, length: { is: 8 }
 
-  scope :first_skope, -> { where(confirmed: true) }
+  scope :all_confirmed, -> { where(confirmed: true) }
   scope :data, ->(from, to) { where('created_at >= ? AND created_at <= ?', from, to) }
 end

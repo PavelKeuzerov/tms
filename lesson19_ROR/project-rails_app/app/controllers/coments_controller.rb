@@ -33,16 +33,15 @@ class ComentsController < ApplicationController
     end
   end
 
-
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_coment
-      @coment = Coment.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def coment_params
-      params.require(:coment).permit(:title, :message, :user_id, :book_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_coment
+    @coment = Coment.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def coment_params
+    params.require(:coment).permit(:title, :message, :user_id, :book_id)
+  end
 end
