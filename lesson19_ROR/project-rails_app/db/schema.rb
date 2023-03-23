@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_190749) do
     t.string "title"
     t.string "message"
     t.bigint "user_id"
-    t.bigint "boor_id"
+    t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
