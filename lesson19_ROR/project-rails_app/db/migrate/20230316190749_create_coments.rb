@@ -5,7 +5,7 @@ class CreateComents < ActiveRecord::Migration[7.0]
       t.string :message
       t.bigint :user_id
       t.bigint :book_id
-      t.index %i[customer_id book_id], unique: true
+      t.index %i[user_id book_id], unique: true
 
       t.timestamps
     end
