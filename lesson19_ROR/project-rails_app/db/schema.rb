@@ -56,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_190749) do
     t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "book_id"], name: "index_coments_on_user_id_and_book_id", unique: true
   end
 
   create_table "customers", force: :cascade do |t|
