@@ -46,6 +46,7 @@ group :development do
   # gem "spring"
 end
 
+gem 'curb'
 gem 'faker'
 gem 'rubocop'
 gem 'rubocop-rails'
