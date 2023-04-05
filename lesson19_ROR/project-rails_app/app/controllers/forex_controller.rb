@@ -36,6 +36,6 @@ class ForexController < ApplicationController
   private
 
   def convert_params
-    params.permit(:from, :to, :amount, :rate)
+    params.permit(:from, :to, :amount)
   end
 end
