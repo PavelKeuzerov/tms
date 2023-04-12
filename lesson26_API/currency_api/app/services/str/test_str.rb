@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Index
+class TestStr
   class << self
     def call
       str = ('str1' + 'str2')

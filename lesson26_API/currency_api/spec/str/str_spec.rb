@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Str::Index do
+describe Str::TestStr do
   subject(:sum_str) { described_class.call('str1', 'str2') }
   describe '.call' do
 
