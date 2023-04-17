@@ -1,0 +1,17 @@
+
+<h1>Currency Converter</h1>
+
+
+<% if @currencies_convert %>
+<%= form_tag convert_url, method: :get do %>
+  <%= label_tag :from, 'From:' %>
+  <%= text_field_tag :from, params[:from] %>
+  <%= label_tag :to, 'To:' %>
+  <%= text_field_tag :to, params[:to] %>
+  <%= label_tag :amount, 'Amount:' %>
+  <%= text_field_tag :amount, params[:amount] %>
+  <%= submit_tag 'Convert' %>
+<% end %>
+
+  <p><%= params[:amount] %> <%= params[:from] %> = <%= @currencies_convert %> <%= params[:to] %></p>
+<% end %>
