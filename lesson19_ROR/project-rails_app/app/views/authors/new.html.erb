@@ -1,0 +1,40 @@
+<h1> New Authors <h1>
+
+<%= form_with(model: @authors) do |form| %>
+  <% if @authors.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@authors.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% @authors.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, presence: true, placeholder: "First name" %>
+  </div>
+
+   <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, presence: true, placeholder: "First name"%>
+  </div>
+
+   <div>
+    <%= form.label :title %>
+    <%= form.text_field :title, presence: true, placeholder: "Title"%>
+  </div>
+
+
+  <div>
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar %>
+  </div>
+
+  <div>
+    <%= form.submit "Submit author"%>
+  </div>
+<% end %>
