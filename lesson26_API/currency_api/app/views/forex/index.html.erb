@@ -1,0 +1,11 @@
+
+<h1>All currency pairs</h1>
+
+
+<ol>
+  <% @currencies_pair.each do |pair| %>
+    <li>
+      <%= link_to pair, "/forex/pair?(pairs: pair)"%> 
+    </li>
+  <% end %>
+</ol> 
