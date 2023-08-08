@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ComentsController < ApplicationController
   before_action :set_coment, only: %i[show update]
 

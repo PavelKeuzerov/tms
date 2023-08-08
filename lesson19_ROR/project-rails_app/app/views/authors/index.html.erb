@@ -1,0 +1,27 @@
+<h1> All Authors <h1>
+
+<% @authors.each do |authors|%>
+
+<h2> <%= authors.first_name %> </h2>
+
+<p>
+  <%= authors.last_name %>
+  <p>
+
+<p>
+  <%= authors.title %>
+  <p>
+
+<p>
+  <% if authors.avatar.previewable? %>
+    <%= image_tag authors.avatar.variant(
+      resize_to_fit: [500, 500]
+    ) %>
+  <% elsif authors.avatar.variable? %>
+    <%= image_tag authors.avatar %>
+  <% end %>
+</p>
+
+<%end%>
+
+
